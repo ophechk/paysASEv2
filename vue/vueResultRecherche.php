@@ -2,28 +2,20 @@
 
 <?php
 for ($i = 0; $i < count($listePays); $i++) {
-    // Initialisation correcte de $idPh
-    $idPh = $listePays[$i]['idP']; // Assurez-vous que cette colonne existe bien dans $listePays
-
-    // Appel à la fonction pour récupérer les photos associées
-    $lesPhotos = getPhotoByIdPh($idPh);
-
-    // Par défaut, si aucune photo n'est trouvée, on initialise un tableau vide
-    if (!$lesPhotos) {
+    try {
+        $lesPhotos = getPhotosByIdP($listePays[$i]['idP']) ?: [];
+    } catch (Exception $e) {
         $lesPhotos = [];
+        error_log("Erreur lors de la récupération des photos pour idP " . $listePays[$i]['idP'] . ": " . $e->getMessage());
     }
     ?>
     <div class="card">
         <div class="photoCard">
-            <?php if (count($lesPhotos) > 0) { ?>
-                <img src="photos/<?= htmlspecialchars($lesPhotos[0]["cheminP"]) ?>" />
+            <?php if (count($lesPhotos) > 0 && isset($lesPhotos[0]['chemin'])) { ?>
+                <img src="photos/<?= htmlspecialchars($lesPhotos[0]['chemin']) ?>"/>
             <?php } else { ?>
-                <p>Aucune photo disponible</p>
+                <img src="photos/cambodge.jpg" width="400px" />
             <?php } ?>
-        </div>
-        <div class="descrCard">
-            <?php echo "<a href='./?action=detail&idP=" . htmlspecialchars($listePays[$i]['idP']) . "'>" . htmlspecialchars($listePays[$i]['nom']) . "</a>"; ?>
-            <br />
         </div>
     </div>
 <?php

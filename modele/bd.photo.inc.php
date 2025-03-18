@@ -2,25 +2,28 @@
 
 include_once "bd.inc.php";
 
-function getPhotosByIdP($idP) {
-    $resultat = array();
+function getPhotosByIdP($idP)
+{
+    if (!isset($idP) || empty($idP)) {
+        throw new Exception("Le paramètre idP est manquant ou invalide.");
+    }
 
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("select * from photo where idP=:idP");
-        $req->bindValue(':idR', $idP, PDO::PARAM_INT);
+        $req = $cnx->prepare("SELECT chemin FROM photo WHERE idPh = :idPh");
+        $req->bindParam(':idPh', $idPh, PDO::PARAM_INT);
 
         $req->execute();
 
-        $resultat = $req->fetchAll(PDO::FETCH_ASSOC);
+        return $req->fetchAll(PDO::FETCH_ASSOC) ?: []; // Retourne un tableau vide si aucun résultat
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage();
         die();
     }
-    return $resultat;
 }
 
-function getPhotoByIdPh($idPh) {
+function getPhotoByIdPh($idPh)
+{
     $resultat = array();
 
     try {
@@ -37,23 +40,26 @@ function getPhotoByIdPh($idPh) {
     return $resultat;
 }
 
-function addPhoto($idPh, $cheminPh, $idP) {
-    $resultat = -1;
+function addPhoto($idPh, $chemin, $idP)
+{
+    if (!isset($idPh) || !isset($chemin) || !isset($idP)) {
+        throw new Exception("Un ou plusieurs paramètres sont manquants.");
+    }
+
     try {
         $cnx = connexionPDO();
-
-        $req = $cnx->prepare("insert into photo (idPh, cheminPh, idP) values(:idPh,:cheminPh,:idP)");
+        $req = $cnx->prepare("INSERT INTO photo (idPh, chemin, idP) VALUES (:idPh, :chemin, :idP)");
         $req->bindValue(':idPh', $idPh, PDO::PARAM_INT);
-        $req->bindValue(':cheminPh', $cheminPh, PDO::PARAM_STR);
+        $req->bindValue(':chemin', $chemin, PDO::PARAM_STR);
         $req->bindValue(':idP', $idP, PDO::PARAM_INT);
 
-        $resultat = $req->execute();
+        return $req->execute();
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage();
         die();
     }
-    return $resultat;
 }
+
 
 if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     // prog principal de test
@@ -78,5 +84,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 
     echo "\n getPhotoByIdPh(1) : \n";
     print_r(getPhotoByIdPh(1));
+
+    echo "\n addPhoto(3, 'image.jpg', 2) : \n";
 }
 ?>
