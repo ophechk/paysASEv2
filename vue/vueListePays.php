@@ -1,45 +1,26 @@
-
 <h1>Liste des pays</h1>
 
 <?php
-for ($i = 0; $i < count($listeRestos); $i++) {
+for ($i = 0; $i < count($listePays); $i++) {
 
-    $lesPhotos = getPhotosByIdR($listeRestos[$i]['idR']);
+    if (isset($listePays[$i]['idP'])) {
+        $lesPhotos = getPhotosByIdP($listePays[$i]['idP']);
+    } else {
+        $lesPhotos = [];
+    }
+
+    $lesPhotos = getPhotosByIdP($listePays[$i]['idP']);
     ?>
+    
 
-    <div class="card">
-        <div class="photoCard">
-            <?php if (count($lesPhotos) > 0) { ?>
-                <img src="photos/<?= $lesPhotos[0]["cheminP"] ?>" alt="photo du restaurant" />
-            <?php } ?>
-
-
-        </div>
-        <div class="descrCard"><?php echo "<a href='./?action=detail&idR=" . $listeRestos[$i]['idR'] . "'>" . $listeRestos[$i]['nomR'] . "</a>"; ?>
-            <br />
-            <?= $listeRestos[$i]["numAdrR"] ?>
-            <?= $listeRestos[$i]["voieAdrR"] ?>
-            <br />
-            <?= $listeRestos[$i]["cpR"] ?>
-            <?= $listeRestos[$i]["villeR"] ?>
-        </div>
-        <div class="tagCard">
-            <ul id="tagFood">		
-
-
-            </ul>
-
-
-        </div>
-
+    <div class="photoCard">
+        <?php if (count($lesPhotos) > 0) { ?>
+            <img src="photos/<?= htmlspecialchars($lesPhotos[0]["cheminP"]) ?>"/>
+        <?php } else { ?>
+            <p>Aucune photo disponible</p>
+        <?php } ?>
     </div>
-
-
-
-
 
     <?php
 }
 ?>
-
-

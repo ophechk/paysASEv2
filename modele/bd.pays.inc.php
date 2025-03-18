@@ -2,12 +2,12 @@
 
 include_once "bd.inc.php";
 
-function getPaysById($idPays) {
+function getPaysById($idP) {
 
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("select * from pays where id=:id");
-        $req->bindValue(':idPays', $idPays, PDO::PARAM_INT);
+        $req = $cnx->prepare("select * from pays where idP=:idP");
+        $req->bindValue(':idP', $idP, PDO::PARAM_INT);
 
         $req->execute();
 
@@ -29,6 +29,28 @@ function getPays() {
 
         while ($ligne = $req->fetch(PDO::FETCH_ASSOC)) {
             $resultat[] = $ligne;
+        }
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage();
+        die();
+    }
+    return $resultat;
+}
+
+function getPaysByCapitale($capitale) {
+    $resultat = array();
+
+    try {
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("select * from pays where capitale like :capitale");
+        $req->bindValue(':capitale', "%" . $capitale . "%", PDO::PARAM_STR);
+
+        $req->execute();
+
+        $ligne = $req->fetch(PDO::FETCH_ASSOC);
+        while ($ligne) {
+            $resultat[] = $ligne;
+            $ligne = $req->fetch(PDO::FETCH_ASSOC);
         }
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage();
@@ -61,24 +83,6 @@ function getPaysByNom($nom) {
 }
 
 
-function getPaysFavoriesByEmail($email) {
-    $resultat = array();
-
-    try {
-        $cnx = connexionPDO();
-        $req = $cnx->prepare("select pays.* from pays,favoris where pays.id = favoris.id and email = :email");
-        $req->bindValue(':email', $email, PDO::PARAM_STR);
-        $req->execute();
-
-        while ($ligne = $req->fetch(PDO::FETCH_ASSOC)) {
-            $resultat[] = $ligne;
-        }
-    } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage();
-        die();
-    }
-    return $resultat;
-}
 
 if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     // prog principal de test
@@ -87,7 +91,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     echo "getPays() : \n";
     print_r(getPays());
 
-    echo "getpaysByidPays(idPays) : \n";
+    echo "getpaysByidPays(idP) : \n";
     print_r(getPaysById(1));
 
     echo "getPaysByNom(nom) : \n";

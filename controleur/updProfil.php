@@ -9,9 +9,9 @@ include_once "$racine/modele/bd.pays.inc.php";
 include_once "$racine/modele/bd.favoris.inc.php";
 
 // creation du menu burger
-$menuBurger = array();
-$menuBurger[] = Array("url" => "./?action=profil", "label" => "Consulter mon profil");
-$menuBurger[] = Array("url" => "./?action=updProfil", "label" => "Modifier mon profil");
+$menuNav = array();
+$menuNav[] = Array("url" => "./?action=profil", "label" => "Consulter mon profil");
+$menuNav[] = Array("url" => "./?action=updProfil", "label" => "Modifier mon profil");
 
 // init messages 
 $messageMdp = "";
@@ -30,10 +30,10 @@ if (isLoggedOn()) {
         }
     }
     
-    if (isset($_POST["password"]) && isset($_POST["password2"])) {
-        if ($_POST["password"] != "") {
-            if (($_POST["password"] == $_POST["password2"])) {
-                updtPasswordUtilisateur($email, $_POST["password"]);
+    if (isset($_POST["mot_de_passe"]) && isset($_POST["mot_de_passe2"])) {
+        if ($_POST["mot_de_passe"] != "") {
+            if (($_POST["mot_de_passe"] == $_POST["mot_de_passe2"])) {
+                updtPasswordUtilisateur($email, $_POST["mot_de_passe"]);
             } else {
                 $messageMdp = "erreur de saisie du mot de passe";
             }
@@ -41,10 +41,6 @@ if (isLoggedOn()) {
     }
 
 
-
-    
-    // appel des fonctions permettant de recuperer les donnees utiles a l'affichage 
-    $mespaysFavoris = getPaysFavorisByEmail($email);
     // appel du script de vue qui permet de gerer l'affichage des donnees
     $titre = "Mon profil";
     include "$racine/vue/entete.html.php";

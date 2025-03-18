@@ -2,27 +2,13 @@
 
 include_once "bd.inc.php";
 
-function getFavorisByEmail($email) {
-    try {
-        $cnx = connexionPDO();
-        $req = $cnx->prepare("select * from favoris where email=:email");
-        $req->bindValue(':email', $email, PDO::PARAM_STR);
-        $req->execute();
-        $resultat = $req->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage();
-        die();
-    }
-    return $resultat;
-}
-
-function getFavorisById($idPays) {
+function getFavorisById($id) {
     $resultat = array();
 
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("select * from favoris where idPays=:idPays");
-        $req->bindValue(':idpays', $idPays, PDO::PARAM_INT);
+        $req = $cnx->prepare("select * from favoris where idU=:idU");
+        $req->bindValue(':idU', $id, PDO::PARAM_INT);
 
         $req->execute();
 
@@ -34,13 +20,12 @@ function getFavorisById($idPays) {
     return $resultat;
 }
 
-
-function addFavoris($email, $idPays) {
+function addFavoris($email, $idP) {
     $resultat = -1;
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("insert into Favoris (email, idR) values(:email,$idPays)");
-        $req->bindValue('$idPays', $idPays, PDO::PARAM_INT);
+        $req = $cnx->prepare("insert into Favoris (email, idP) values(:email,$idP)");
+        $req->bindValue('$idP', $idP, PDO::PARAM_INT);
         $req->bindValue(':email', $email, PDO::PARAM_STR);
         
         $resultat = $req->execute();
@@ -51,13 +36,13 @@ function addFavoris($email, $idPays) {
     return $resultat;
 }
 
-function delFavoris($email, $idPays) {
+function delFavoris($email, $idP) {
     $resultat = -1;
     try {
         $cnx = connexionPDO();
 
-        $req = $cnx->prepare("delete from Favoris where idR=$idPays and email=:email");
-        $req->bindValue('$idPays', $idPays, PDO::PARAM_INT);
+        $req = $cnx->prepare("delete from Favoris where idP=$idP and email=:email");
+        $req->bindValue('$idP', $idP, PDO::PARAM_INT);
         $req->bindValue(':email', $email, PDO::PARAM_STR);
         
         $resultat = $req->execute();
@@ -78,9 +63,6 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 
     echo "\n addFavoris(\"mathieu.capliez@gmail.com\",2) : \n";
     print_r(addFavoris("mathieu.capliez@gmail.com", 2));
-
-    echo "\n getFavorisByEmail(\"mathieu.capliez@gmail.com\") : \n";
-    print_r(getFavorisByEmail("mathieu.capliez@gmail.com"));
 
     echo "\n getFavorisById(1) : \n";
     print_r(getFavorisById(1));

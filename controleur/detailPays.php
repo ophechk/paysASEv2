@@ -7,30 +7,20 @@ include_once "$racine/modele/bd.pays.inc.php";
 include_once "$racine/modele/bd.favoris.inc.php";
 include_once "$racine/modele/authentification.inc.php";
 
-// creation du menu burger
-// $menuBurger = array();
-// $menuBurger[] = Array("url"=>"#top","label"=>"Le restaurant");
-// $menuBurger[] = Array("url"=>"#adresse","label"=>"Adresse");
-// $menuBurger[] = Array("url"=>"#photos","label"=>"Photos");
-// $menuBurger[] = Array("url"=>"#horaires","label"=>"Horaires");
-// $menuBurger[] = Array("url"=>"#crit","label"=>"Critiques");
+$menuNav = array();
+$menuNav[] = Array("url"=>"./?action=recherche&critere=nom","label"=>"Recherche par nom");
 
 // recuperation des donnees GET, POST, et SESSION
-$idR = $_GET["idR"];
+$idP = $_GET["idP"];
 
 // appel des fonctions permettant de recuperer les donnees utiles a l'affichage 
-$unPays = getPaysById($id);
+$unPays = getPaysById($idP);
 
 
 $email = getEmailLoggedOn();
-$favoris = getFavorisById($email, $id);
 
 // traitement si necessaire des donnees recuperees
 ;
-$monCommentaire="";
-if ($maCritique) {
-    $monCommentaire = $maCritique['commentaire'];
-}
 
 // appel du script de vue qui permet de gerer l'affichage des donnees
 $titre = "detail d'un pays";

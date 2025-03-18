@@ -10,6 +10,8 @@ function controleurPrincipal($action){
     $lesActions["updProfil"] = "updProfil.php";
     $lesActions["inscription"] = "inscription.php";
     $lesActions["favoris"] = "favoris.php";
+    $lesActions["liste"] = "listePays.php";
+    $lesActions["recherche"] = "recherchePays.php";
 
     
     if (array_key_exists ( $action , $lesActions )){

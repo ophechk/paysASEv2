@@ -8,12 +8,12 @@ function login($email, $password) {
     }
 
     $util = getUtilisateurByEmail($email);
-    $mdpBD = $util["password"];
+    $mdpBD = $util["mot_de_passe"];
 
     if (trim($mdpBD) == trim(crypt($password, $mdpBD))) {
         // le mot de passe est celui de l'utilisateur dans la base de donnees
         $_SESSION["email"] = $email;
-        $_SESSION["password"] = $mdpBD;
+        $_SESSION["mot_de_passe"] = $mdpBD;
     }
 }
 
@@ -22,10 +22,10 @@ function logout() {
         session_start();
     }
     unset($_SESSION["email"]);
-    unset($_SESSION["password"]);
+    unset($_SESSION["mot_de_passe"]);
 }
 
-function getemailLoggedOn(){
+function getEmailLoggedOn(){
     if (isLoggedOn()){
         $ret = $_SESSION["email"];
     }
@@ -44,7 +44,7 @@ function isLoggedOn() {
 
     if (isset($_SESSION["email"])) {
         $util = getUtilisateurByEmail($_SESSION["email"]);
-        if ($util["email"] == $_SESSION["email"] && $util["password"] == $_SESSION["password"]
+        if ($util["email"] == $_SESSION["email"] && $util["mot_de_passe"] == $_SESSION["mot_de_passe"]
         ) {
             $ret = true;
         }
@@ -58,7 +58,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 
 
     // test de connexion
-    login("mathieu.capliez@gmail.com", "Passe1?");
+    login("mathieu.capliez@gmail.com", password: "Passe1?");
     if (isLoggedOn()) {
         echo "logged";
     } else {

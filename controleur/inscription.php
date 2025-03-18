@@ -6,19 +6,19 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 include_once "$racine/modele/bd.utilisateur.inc.php";
 
 // creation du menu burger
-$menuBurger = array();
-$menuBurger[] = Array("url"=>"./?action=connexion","label"=>"Connexion");
-$menuBurger[] = Array("url"=>"./?action=inscription","label"=>"Inscription");
+$menuNav = array();
+$menuNav[] = Array("url"=>"./?action=connexion","label"=>"Connexion");
+$menuNav[] = Array("url"=>"./?action=inscription","label"=>"Inscription");
 
 
 $inscrit = false;
 $msg="";
 // recuperation des donnees GET, POST, et SESSION
-if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["pseudo"])) {
+if (isset($_POST["email"]) && isset($_POST["mot_de_passe"]) && isset($_POST["pseudo"])) {
 
-    if ($_POST["email"] != "" && $_POST["password"] != "" && $_POST["pseudo"] != "") {
+    if ($_POST["email"] != "" && $_POST["mot_de_passe"] != "" && $_POST["pseudo"] != "") {
         $email = $_POST["email"];
-        $password = $_POST["password"];
+        $password = $_POST["mot_de_passe"];
         $pseudo = $_POST["pseudo"];
 
         // enregistrement des donnees

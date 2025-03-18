@@ -40,9 +40,9 @@ function addUtilisateur($email, $password, $pseudo) {
         $cnx = connexionPDO();
 
         $passwordCrypt = crypt($password, "sel");
-        $req = $cnx->prepare("insert into utilisateur (email, password, pseudo) values(:email,:password,:pseudo)");
+        $req = $cnx->prepare("insert into utilisateur (email, mot_de_passe, pseudo) values(:email,:mot_de_passe,:pseudo)");
         $req->bindValue(':email', $email, PDO::PARAM_STR);
-        $req->bindValue(':password', $passwordCrypt, PDO::PARAM_STR);
+        $req->bindValue(':mot_de_passe', $passwordCrypt, PDO::PARAM_STR);
         $req->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
         
         $resultat = $req->execute();
@@ -59,9 +59,9 @@ function updtPasswordUtilisateur($email, $password) {
         $cnx = connexionPDO();
 
         $passwordCrypt = crypt($password, "sel");
-        $req = $cnx->prepare("update utilisateur set password=:password where email=:email");
+        $req = $cnx->prepare("update utilisateur set mot_de_passe=:mot_de_passe where email=:email");
         $req->bindValue(':email', $email, PDO::PARAM_STR);
-        $req->bindValue(':password', $passwordCrypt, PDO::PARAM_STR);
+        $req->bindValue(':mot_de_passe', $passwordCrypt, PDO::PARAM_STR);
 
         $resultat = $req->execute();
     } catch (PDOException $e) {
@@ -96,7 +96,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     print_r(getUtilisateurs());
 
     echo "getUtilisateurByEmail(\"mathieu.capliez@gmail.com\") : \n";
-    print_r(getUtilisateurByemail("mathieu.capliez@gmail.com"));
+    print_r(getUtilisateurByEmail("mathieu.capliez@gmail.com"));
 
     echo "addUtilisateur(\"mathieu.capliez3@gmail.com\") : \n";
     addUtilisateur("mathieu.capliez3@gmail.com", "Passe1?", "mat");

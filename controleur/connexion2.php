@@ -4,15 +4,13 @@ if ( $_SERVER["SCRIPT_FILENAME"] == __FILE__ ){
 }
 include_once "$racine/modele/authentification.inc.php";
 
-// creation du menu burger
-$menuBurger = array();
-$menuBurger[] = Array("url"=>"./?action=connexion","label"=>"Connexion");
-$menuBurger[] = Array("url"=>"./?action=inscription","label"=>"Inscription");
+$menuNav = array();
+$menuNav[] = Array("url"=>"./?action=recherche&critere=nom","label"=>"Recherche par nom");
 
 // recuperation des donnees GET, POST, et SESSION
-if (isset($_POST["email"]) && isset($_POST["password"])){
+if (isset($_POST["email"]) && isset($_POST["mot_de_passe"])){
     $email=$_POST["email"];
-    $password=$_POST["password"];
+    $password=$_POST["èmot_de_passe"];
 }
 else
 {

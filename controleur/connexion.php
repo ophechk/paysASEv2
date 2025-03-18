@@ -4,15 +4,11 @@ if ( $_SERVER["SCRIPT_FILENAME"] == __FILE__ ){
 }
 include_once "$racine/modele/authentification.inc.php";
 
-// creation du menu nav
-// $menuNav = array();
-// $menuNav[] = Array("url"=>"./?action=recherche&critere=nom","label"=>"Recherche par nom");
-// $menuNav[] = Array("url"=>"./?action=recherche&critere=adresse","label"=>"Recherche par adresse");
-// $menuNav[] = Array("url"=>"./?action=recherche&critere=type","label"=>"Recherche par type de cuisine");
-// $menuNav[] = Array("url"=>"./?action=recherche&critere=multi","label"=>"Recherche multicritère");
+$menuNav = array();
+$menuNav[] = Array("url"=>"./?action=recherche&critere=nom","label"=>"Recherche par nom");
 
 // recuperation des donnees GET, POST, et SESSION
-if (!isset($_POST["email"]) || !isset($_POST["password"])){
+if (!isset($_POST["email"]) || !isset($_POST["mot_de_passe"])){
     // on affiche le formulaire de connexion
     $titre = "authentification";
     include "$racine/vue/entete.html.php";
@@ -22,7 +18,7 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])){
 else
 {
     $email=$_POST["email"];
-    $password=$_POST["password"];
+    $password=$_POST["mot_de_passe"];
     
     login($email,$password);
 

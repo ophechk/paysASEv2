@@ -7,9 +7,9 @@ include_once "$racine/modele/bd.utilisateur.inc.php";
 include_once "$racine/modele/bd.pays.inc.php";
 
 // creation du menu burger
-$menuBurger = array();
-$menuBurger[] = Array("url"=>"./?action=profil","label"=>"Consulter mon profil");
-$menuBurger[] = Array("url"=>"./?action=updProfil","label"=>"Modifier mon profil");
+$menuNav = array();
+$menuNav[] = Array("url"=>"./?action=profil","label"=>"Consulter mon profil");
+$menuNav[] = Array("url"=>"./?action=updProfil","label"=>"Modifier mon profil");
 
 
 // recuperation des donnees GET, POST, et SESSION
@@ -18,8 +18,6 @@ $menuBurger[] = Array("url"=>"./?action=updProfil","label"=>"Modifier mon profil
 if (isLoggedOn()){
     $email = getEmailLoggedOn();
     $util = getUtilisateurByEmail($email);
-    
-    $mesPaysFavoris = getPaysFavorisByEmail($email);
 
     // appel du script de vue qui permet de gerer l'affichage des donnees
     $titre = "Mon profil";

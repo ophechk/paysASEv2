@@ -11,6 +11,6 @@
 
 <hr>
 Utilisateur de test : <br />
-login : test@tuto.fr<br />
-mot de passe : test784
+login : <br />
+mot de passe : 
 
