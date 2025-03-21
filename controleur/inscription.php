@@ -7,8 +7,9 @@ include_once "$racine/modele/bd.utilisateur.inc.php";
 
 // creation du menu burger
 $menuNav = array();
-$menuNav[] = Array("url"=>"./?action=connexion","label"=>"Connexion");
-$menuNav[] = Array("url"=>"./?action=inscription","label"=>"Inscription");
+$menuNav[] = Array("url"=>"./?action=recherche&critere=nom","label"=>"Recherche par nom");
+
+
 
 
 $inscrit = false;

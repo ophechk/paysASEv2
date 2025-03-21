@@ -7,7 +7,7 @@
         case "nom":
             ?>
             Recherche par nom : <br />
-            <input type="text" name="nom" placeholder="nom" value="<?= $nom ?>" /><br />
+            <input type="text" name="nom" placeholder="Nom" value="<?= $nom ?>" /><br />
             <?php
             break;
     }
