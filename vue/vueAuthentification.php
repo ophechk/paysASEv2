@@ -8,9 +8,3 @@
 </form>
 <br />
 <p>Pas encore de compte ? <a href="./?action=inscription">Créer un compte</a></p>
-
-<hr>
-Utilisateur de test : <br />
-login : <br />
-mot de passe : 
-

@@ -1,6 +1,7 @@
 <?php
 
 include_once "bd.inc.php";
+include_once "bd.photo.inc.php";
 
 function getPaysById($idP) {
 
