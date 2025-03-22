@@ -1,11 +1,12 @@
-Ce que j'ai à faire : 
+PaysASE 
 
-modifier la base de données pour ajouter dans la table pays -> les photos
+# Les fonctionnalités du site :
 
-voir comment mettre un pays en favoris en s'inspirant de la table aimer de Restotop
+- un utilisateur peut se connecter, s'inscrire, se déconnecter, et mettre en favoris un pays
 
-voir comment remplacer les idR pour les id resto en idP pour id pays
+- un utilisateur peut modifier son profil ou supprimer son compte
 
-faire un petit css ou utiliser bootstrap ?
+- quand il est connecté , il peut voir les détails d'un pays
 
+- il peut chercher un pays par son nom et voir les détails d'un pays en cliquant sur le bouton d'un détail d'un pays
 
