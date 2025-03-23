@@ -1,4 +1,5 @@
-<h1><?= $unPays['nom']; ?>
+<!-- <h1>
+    <?= $unPays['nom']; ?>
 
     <?php if ($favoris != false) { ?>
         <a href="./?action=favoris&idP=<?= $unPays['idP']; ?>"><img class="aimer" src="images/aime.png"></a>
@@ -6,11 +7,11 @@
         <a href="./?action=favoris&idP=<?= $unPays['idP']; ?>"><img class="aimer" src="images/aimepas.png"></a>
     <?php } ?>
 
-</h1>
+</h1> -->
 
 <p id="principal">
     <?php if (count($lesPhotos) > 0) { ?>
-        <img src="photos/<?= $lesPhotos[0]["cheminP"] ?>" />
+        <img src="photos/<?= $lesPhotos[0]["chemin"] ?>" />
     <?php } ?>
     <br />
 </p>

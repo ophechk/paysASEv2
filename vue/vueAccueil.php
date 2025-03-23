@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../modele/bd.photo.inc.php'; // Inclusion du fichier contenant la fonction
+require_once __DIR__ . '/../modele/bd.photo.inc.php'; 
 ?>
 
 <br/>

@@ -13,13 +13,8 @@
             break;
         case "capital":
             ?>
-            Recherche par capitale : <br />
-            <table>
-                <tr>
-                    <td> <label class="rouge"> Capitale </label> <input type="text" name="capital" placeholder="capital"
-                            value="<?= $capital ?>" /><br /> </td>
-                </tr>
-            </table>
+           Recherche par capitale : <br />
+            <input type="text" name="capital" placeholder="capitale" value="<?= $capital ?>" /><br />
             <?php
             break;
     }

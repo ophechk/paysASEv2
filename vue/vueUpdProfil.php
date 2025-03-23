@@ -16,12 +16,12 @@ Mettre à jour mon pseudo :
 
     <hr>
 
-    Gerer les pays que j'aime : <br />
+    <!-- Gerer les pays que j'aime : <br />
     <?php for ($i = 0; $i < count($mesPaysFavoris); $i++) { ?>
         <input type="checkbox" name="lstidP[]" id="pays<?= $i ?>" value="<?= $mesPaysFavoris[$i]['idR'] ?>">
         <label for="pays<?= $i ?>"><?= $mesPaysFavoris[$i]['nom'] ?></label><br />
     <?php } ?>
-    <input type="submit" value="Supprimer" />
+    <input type="submit" value="Supprimer" /> -->
 
     <hr>
 </form>

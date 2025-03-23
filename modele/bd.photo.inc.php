@@ -5,10 +5,19 @@ include_once "bd.inc.php";
 // Retourne plusieurs photos sous forme d'un tableau
 function getPhotosByIdPh($photo_idPh)
 {
-    global $pdo;
-    $stmt = $pdo->prepare("SELECT * FROM photo WHERE idPh = :photo_idPh");
-    $stmt->execute(['photo_idPh' => $photo_idPh]);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC); // Renvoie plusieurs résultats
+    $resultat = array();
+    try {
+        $cnx = connexionPDO(); // S'assurer qu'on a bien une connexion active
+        $req = $cnx->prepare("SELECT * FROM photo WHERE idPh = :photo_idPh");
+        $req->bindValue(':photo_idPh', $photo_idPh, PDO::PARAM_INT);
+
+        $req->execute();
+        $resultat = $req->fetch(PDO::FETCH_ASSOC); // Renvoie un seul résultat
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage();
+        die();
+    }
+    return $resultat;
 }
 
 // Retourne UNE SEULE photo
