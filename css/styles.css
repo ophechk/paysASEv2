@@ -1,0 +1,81 @@
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Navigation principale */
+nav {
+    background-color: #333;
+    padding: 10px 0;
+}
+
+#menu1 {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+#menu1 li {
+    margin: 0 15px;
+}
+
+#menu1 a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+#menu1 a:hover {
+    color: #ffcc00;
+}
+
+/* Menu secondaire */
+#menu2 {
+    list-style: none;
+    padding: 10px;
+    text-align: center;
+}
+
+#menu2 li {
+    display: inline;
+    margin: 0 10px;
+}
+
+#menu2 a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 5px;
+    transition: color 0.3s;
+}
+
+#menu2 a:hover {
+    color: #ff6600;
+}
+
+/* Contenu principal */
+#page {
+    max-width: 1500px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+/* Uniformisation des images */
+img {
+    width: 800px; /* Taille fixe pour toutes les images */
+    height: 800px; /* Taille fixe pour uniformiser */
+    object-fit: cover; /* Ajuste l'image pour remplir sans distorsion */
+    display: block;
+    margin: 0 auto;
+    border-radius: 5px;
+}

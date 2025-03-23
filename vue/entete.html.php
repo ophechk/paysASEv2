@@ -5,9 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <title><?php echo $titre ?></title>
     <style type="text/css">
-        @import url("css/base.css");
-        @import url("css/form.css");
-        @import url("css/page.css");
+        @import url("css/styles.css");
     </style>
 </head>
 
