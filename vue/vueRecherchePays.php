@@ -1,9 +1,9 @@
-
 <h1>Recherche d'un pays</h1>
 <form action="./?action=recherche&critere=<?= $critere ?>" method="POST">
 
 
     <?php
+
     switch ($critere) {
         case "nom":
             ?>
@@ -15,7 +15,10 @@
             ?>
             Recherche par capitale : <br />
             <table>
-                <tr> <td> <label class = "rouge"> Capitale </label> <input type="text" name="capital" placeholder="capital" value="<?= $capital ?>"/><br /> </td> </tr>
+                <tr>
+                    <td> <label class="rouge"> Capitale </label> <input type="text" name="capital" placeholder="capital"
+                            value="<?= $capital ?>" /><br /> </td>
+                </tr>
             </table>
             <?php
             break;

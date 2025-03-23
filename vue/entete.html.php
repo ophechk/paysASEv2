@@ -7,7 +7,6 @@
             @import url("css/base.css");
             @import url("css/form.css");
             @import url("css/page.css");
-            @import url("css/corps.css");
         </style>
     </head>
     <body>
