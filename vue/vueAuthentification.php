@@ -12,6 +12,6 @@ Pas encore de compte ? <a href="./?action=inscription">Créer un compte</a>
 <hr>
 Utilisateur de test :
 <br />
-login : test@gmail.com
+login : po@gmail.com
 <br />
-mot de passe : test
+mot de passe : popo
