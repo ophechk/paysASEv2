@@ -7,7 +7,6 @@ include_once "$racine/modele/bd.photo.inc.php";
 
 // creation du menu burger
 $menuNav = array();
-$menuNav[] = array("url" => "./?action=recherche&critere=nom", "label" => "Recherche par nom");
 $menuNav[] = array("url" => "./?action=recherche&critere=capital", "label" => "Recherche par capitale");
 
 // critere de recherche par defaut
