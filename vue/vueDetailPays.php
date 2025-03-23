@@ -1,43 +1,44 @@
-<!-- <h1>
-    <?= $unPays['nom']; ?>
+<?php
+require_once __DIR__ . '/../modele/bd.photo.inc.php';
 
-    <?php if ($favoris != false) { ?>
-        <a href="./?action=favoris&idP=<?= $unPays['idP']; ?>"><img class="aimer" src="images/aime.png"></a>
+// Récupération de l'ID de la photo principale du pays
+$photo_id = isset($unPays['photo_idPh']) ? intval($unPays['photo_idPh']) : null;
+$photo = (!empty($photo_id)) ? getPhotoByIdPh($photo_id) : null;
+?>
+
+<h1>
+    <?= htmlspecialchars($unPays['nom']) ?>
+
+    <!-- <?php if ($favoris != false) { ?>
+        <a href="./?action=favoris&idP=<?= $unPays['idP']; ?>">
+            <img class="aimer" src="images/aime.png">
+        </a>
     <?php } else { ?>
-        <a href="./?action=favoris&idP=<?= $unPays['idP']; ?>"><img class="aimer" src="images/aimepas.png"></a>
-    <?php } ?>
+        <a href="./?action=favoris&idP=<?= $unPays['idP']; ?>">
+            <img class="aimer" src="images/aimepas.png">
+        </a>
+    <?php } ?> -->
 
-</h1> -->
+</h1>
 
-<p id="principal">
-    <?php if (count($lesPhotos) > 0) { ?>
-        <img src="photos/<?= $lesPhotos[0]["chemin"] ?>" />
-    <?php } ?>
-    <br />
-</p>
-<h2 id="capital">
-    Capitale :
-</h2>
-<p>
-    <?= $unPays['capital']; ?>
-</p>
+<!-- Affichage de la photo principale du pays -->
+<div id="photo-pays">
+    <?php
+    if (!empty($photo) && isset($photo['chemin'])) {
+        $chemin = 'photos/' . htmlspecialchars($photo['chemin']);
+        if (file_exists(__DIR__ . "/../$chemin")) { ?>
+            <img src="/paysASEv2/<?= $chemin ?>" alt="Image de <?= htmlspecialchars($unPays['nom']) ?>" />
+        <?php }
+    } ?>
+</div>
 
-<h2 id="photos">
-    Photos :
-</h2>
-<ul id="galerie">
-    <?php for ($i = 0; $i < count($lesPhotos); $i++) { ?>
-        <li> <img class="galerie" src="photos/<?= $lesPhotos[$i]["chemin"] ?>" /></li>
-    <?php } ?>
+<h2 id="capital">Capitale :</h2>
+<p><?= htmlspecialchars($unPays['capital']) ?></p>
+
+<h2 id="population">Population :</h2>
+<p><?= htmlspecialchars($unPays['population']) ?> d'habitants</p>
+
+<h2 id="superficie">Superficie :</h2>
+<p><?= htmlspecialchars($unPays['superficie']) ?> km²</p>
 
 </ul>
-
-<h2 id="population">
-    Population :
-</h2>
-<?= $unPays['population']; ?>
-
-<h2 id="superficie">
-    Superficie :
-</h2>
-<?= $unPays['superficie']; ?>
