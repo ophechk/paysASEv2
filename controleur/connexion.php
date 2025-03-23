@@ -1,34 +1,31 @@
 <?php
-if ( $_SERVER["SCRIPT_FILENAME"] == __FILE__ ){
-    $racine="..";
+if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
+    $racine = "..";
 }
 include_once "$racine/modele/authentification.inc.php";
 
 // creation du menu burger
 $menuNav = array();
-$menuNav[] = Array("url"=>".?action=inscription", "label"=>"Inscription");
-$menuNav[] = Array("url"=>"./?action=recherche&critere=nom","label"=>"Recherche par nom");
-$menunav[] = Array("url"=>"./?action=recherche&critere=capital","label"=>"Recherche par capitale");
+$menuNav[] = array("url" => ".?action=inscription", "label" => "Inscription");
+$menuNav[] = array("url" => "./?action=recherche&critere=nom", "label" => "Recherche par nom");
+$menunav[] = array("url" => "./?action=recherche&critere=capital", "label" => "Recherche par capitale");
 
 // recuperation des donnees GET, POST, et SESSION
-if (!isset($_POST["email"]) || !isset($_POST["mot_de_passe"])){
+if (!isset($_POST["email"]) || !isset($_POST["mot_de_passe"])) {
     // on affiche le formulaire de connexion
     $titre = "authentification";
     include "$racine/vue/entete.html.php";
     include "$racine/vue/vueAuthentification.php";
     include "$racine/vue/pied.html.php";
-}
-else
-{
-    $email=$_POST["email"];
-    $mot_de_passe=$_POST["mot_de_passe"];
-    
-    login($email,$mot_de_passe);
+} else {
+    $email = $_POST["email"];
+    $mot_de_passe = $_POST["mot_de_passe"];
 
-    if (isLoggedOn()){ // si l'utilisateur est connecté on redirige vers le controleur monProfil
+    login($email, $mot_de_passe);
+
+    if (isLoggedOn()) { // si l'utilisateur est connecté on redirige vers le controleur monProfil
         include "$racine/controleur/monProfil.php";
-    }
-    else{
+    } else {
         // l'utilisateur n'est pas connecté, on affiche le formulaire de connexion
         $titre = "authentification";
         include "$racine/vue/entete.html.php";

@@ -2,7 +2,8 @@
 
 include_once "bd.utilisateur.inc.php";
 
-function login($email, $mot_de_passe) {
+function login($email, $mot_de_passe)
+{
     if (!isset($_SESSION)) {
         session_start();
     }
@@ -10,14 +11,15 @@ function login($email, $mot_de_passe) {
     $util = getUtilisateurByEmail($email);
     $mdpBD = $util["mot_de_passe"];
 
-    if (trim($mdpBD) == trim(crypt($mot_de_passe, $mdpBD))) {
+    if (trim($mdpBD) == trim(string: crypt($mot_de_passe, $mdpBD))) {
         // le mot de passe est celui de l'utilisateur dans la base de donnees
         $_SESSION["email"] = $email;
         $_SESSION["mot_de_passe"] = $mdpBD;
     }
 }
 
-function logout() {
+function logout()
+{
     if (!isset($_SESSION)) {
         session_start();
     }
@@ -25,18 +27,19 @@ function logout() {
     unset($_SESSION["mot_de_passe"]);
 }
 
-function getEmailLoggedOn(){
-    if (isLoggedOn()){
+function getEmailLoggedOn()
+{
+    if (isLoggedOn()) {
         $ret = $_SESSION["email"];
-    }
-    else {
+    } else {
         $ret = "";
     }
     return $ret;
-        
+
 }
 
-function isLoggedOn() {
+function isLoggedOn()
+{
     if (!isset($_SESSION)) {
         session_start();
     }
@@ -44,7 +47,8 @@ function isLoggedOn() {
 
     if (isset($_SESSION["email"])) {
         $util = getUtilisateurByEmail($_SESSION["email"]);
-        if ($util["email"] == $_SESSION["email"] && $util["mot_de_passe"] == $_SESSION["mot_de_passe"]
+        if (
+            $util["email"] == $_SESSION["email"] && $util["mot_de_passe"] == $_SESSION["mot_de_passe"]
         ) {
             $ret = true;
         }

@@ -1,6 +1,7 @@
 <?php
 
-function controleurPrincipal($action){
+function controleurPrincipal($action)
+{
     $lesActions = array();
     $lesActions["defaut"] = "accueil.php";
     $lesActions["liste"] = "listePays.php";
@@ -12,11 +13,10 @@ function controleurPrincipal($action){
     $lesActions["updProfil"] = "updProfil.php";
     $lesActions["inscription"] = "inscription.php";
     $lesActions["favoris"] = "favoris.php";
-    
-    if (array_key_exists ( $action , $lesActions )){
+
+    if (array_key_exists($action, $lesActions)) {
         return $lesActions[$action];
-    }
-    else{
+    } else {
         return $lesActions["defaut"];
     }
 

@@ -2,7 +2,8 @@
 
 include_once "bd.inc.php";
 
-function getPaysByIdP($idP) {
+function getPaysByIdP($idP)
+{
 
     try {
         $cnx = connexionPDO();
@@ -19,7 +20,8 @@ function getPaysByIdP($idP) {
     return $resultat;
 }
 
-function getPays() {
+function getPays()
+{
     $resultat = array();
 
     try {
@@ -38,7 +40,8 @@ function getPays() {
 }
 
 
-function getPaysByMotsCles($tabMots) {
+function getPaysByMotsCles($tabMots)
+{
     $resultat = array();
 
     $filtre = "";
@@ -63,7 +66,8 @@ function getPaysByMotsCles($tabMots) {
 }
 
 
-function getPaysByNom($nom) {
+function getPaysByNom($nom)
+{
     $resultat = array();
 
     try {
@@ -85,7 +89,8 @@ function getPaysByNom($nom) {
     return $resultat;
 }
 
-function getPaysByCapital($capital) {
+function getPaysByCapital($capital)
+{
     $resultat = array();
 
     try {

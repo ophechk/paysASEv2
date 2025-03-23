@@ -1,6 +1,6 @@
 <?php
-if ( $_SERVER["SCRIPT_FILENAME"] == __FILE__ ){
-    $racine="..";
+if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
+    $racine = "..";
 }
 include_once "$racine/modele/bd.pays.inc.php";
 

@@ -3,7 +3,8 @@
 include_once "bd.inc.php";
 
 // Retourne plusieurs photos sous forme d'un tableau
-function getPhotosByIdPh($photo_idPh) {
+function getPhotosByIdPh($photo_idPh)
+{
     global $pdo;
     $stmt = $pdo->prepare("SELECT * FROM photo WHERE idPh = :photo_idPh");
     $stmt->execute(['photo_idPh' => $photo_idPh]);
@@ -11,7 +12,8 @@ function getPhotosByIdPh($photo_idPh) {
 }
 
 // Retourne UNE SEULE photo
-function getPhotoByIdPh($idPh) {
+function getPhotoByIdPh($idPh)
+{
     $resultat = array();
     try {
         $cnx = connexionPDO();

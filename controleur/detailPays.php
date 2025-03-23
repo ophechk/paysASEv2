@@ -10,9 +10,9 @@ include_once "$racine/modele/authentification.inc.php";
 
 // creation du menu burger
 $menuNav = array();
-$menuNav[] = Array("url"=>"#top","label"=>"Le pays");
-$menuNav[] = Array("url"=>"#capital","label"=>"Capitale");
-$menuNav[] = Array("url"=>"#photos","label"=>"Photos");
+$menuNav[] = array("url" => "#top", "label" => "Le pays");
+$menuNav[] = array("url" => "#capital", "label" => "Capitale");
+$menuNav[] = array("url" => "#photos", "label" => "Photos");
 
 // recuperation des donnees GET, POST, et SESSION
 $idP = $_GET["idP"];

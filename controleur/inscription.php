@@ -7,11 +7,11 @@ include_once "$racine/modele/bd.utilisateur.inc.php";
 
 // creation du menu burger
 $menuNav = array();
-$menuNav[] = Array("url"=>"./?action=recherche&critere=nom","label"=>"Recherche par nom");
-$menunav[] = Array("url"=>"./?action=recherche&critere=capital","label"=>"Recherche par capitale");
+$menuNav[] = array("url" => "./?action=recherche&critere=nom", "label" => "Recherche par nom");
+$menunav[] = array("url" => "./?action=recherche&critere=capital", "label" => "Recherche par capitale");
 
 $inscrit = false;
-$msg="";
+$msg = "";
 // recuperation des donnees GET, POST, et SESSION
 if (isset($_POST["email"]) && isset($_POST["mot_de_passe"]) && isset($_POST["pseudo"])) {
 
@@ -27,9 +27,8 @@ if (isset($_POST["email"]) && isset($_POST["mot_de_passe"]) && isset($_POST["pse
         } else {
             $msg = "l'utilisateur n'a pas été enregistré.";
         }
-    }
- else {
-    $msg="Renseigner tous les champs...";    
+    } else {
+        $msg = "Renseigner tous les champs...";
     }
 }
 

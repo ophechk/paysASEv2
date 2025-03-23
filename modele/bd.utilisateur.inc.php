@@ -2,7 +2,8 @@
 
 include_once "bd.inc.php";
 
-function getUtilisateurs() {
+function getUtilisateurs()
+{
     $resultat = array();
 
     try {
@@ -18,7 +19,8 @@ function getUtilisateurs() {
     return $resultat;
 }
 
-function getUtilisateurByEmail($email) {
+function getUtilisateurByEmail($email)
+{
     $resultat = array();
 
     try {
@@ -26,7 +28,7 @@ function getUtilisateurByEmail($email) {
         $req = $cnx->prepare("select * from utilisateur where email=:email");
         $req->bindValue(':email', $email, PDO::PARAM_STR);
         $req->execute();
-        
+
         $resultat = $req->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage();
@@ -35,7 +37,8 @@ function getUtilisateurByEmail($email) {
     return $resultat;
 }
 
-function addUtilisateur($email, $mot_de_passe, $pseudo) {
+function addUtilisateur($email, $mot_de_passe, $pseudo)
+{
     try {
         $cnx = connexionPDO();
 
@@ -44,7 +47,7 @@ function addUtilisateur($email, $mot_de_passe, $pseudo) {
         $req->bindValue(':email', $email, PDO::PARAM_STR);
         $req->bindValue(':mot_de_passe', $mdpUCrypt, PDO::PARAM_STR);
         $req->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
-        
+
         $resultat = $req->execute();
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage();
@@ -53,7 +56,8 @@ function addUtilisateur($email, $mot_de_passe, $pseudo) {
     return $resultat;
 }
 
-function updtMdpUtilisateur($email, $mot_de_passe) {
+function updtMdpUtilisateur($email, $mot_de_passe)
+{
     $resultat = -1;
     try {
         $cnx = connexionPDO();
@@ -71,7 +75,8 @@ function updtMdpUtilisateur($email, $mot_de_passe) {
     return $resultat;
 }
 
-function updtPseudoUtilisateur($email, $pseudo) {
+function updtPseudoUtilisateur($email, $pseudo)
+{
     $resultat = -1;
     try {
         $cnx = connexionPDO();

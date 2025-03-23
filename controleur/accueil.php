@@ -1,12 +1,12 @@
 <?php
-if ( $_SERVER["SCRIPT_FILENAME"] == __FILE__ ){
-    $racine="..";
+if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
+    $racine = "..";
 }
 include_once "$racine/modele/bd.pays.inc.php";
 
 $menuNav = array();
-$menuNav[] = Array("url"=>"./?action=recherche&critere=nom","label"=>"Recherche par nom");
-$menunav[] = Array("url"=>"./?action=recherche&critere=capital","label"=>"Recherche par capitale");
+$menuNav[] = array("url" => "./?action=recherche&critere=nom", "label" => "Recherche par nom");
+$menunav[] = array("url" => "./?action=recherche&critere=capital", "label" => "Recherche par capitale");
 
 // recuperation des donnees GET, POST, et SESSION
 ;
