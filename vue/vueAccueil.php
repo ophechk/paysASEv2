@@ -2,6 +2,8 @@
 require_once __DIR__ . '/../modele/bd.photo.inc.php'; // Inclusion du fichier contenant la fonction
 ?>
 
+<br/>
+
 <div id="accroche">Découvrez les pays d'Asie du Sud-Est</div>
 <h1>Quelques pays...</h1>
 
@@ -23,7 +25,7 @@ if (!empty($listePays)) {
 
 
             <div class="card">
-                <div class="photoCard">
+                <div class="photoCard" style="margin-top : 30px; margin-bottom: 20px;">
                     <?php
                     if (!empty($photo) && isset($photo['chemin'])) {
                         $chemin = 'photos/' . htmlspecialchars($photo['chemin']);
@@ -39,8 +41,9 @@ if (!empty($listePays)) {
                     <?php } ?>
                 </div>
 
-                <div class="descrCard">
+                <div class="descrCard" style="text-align : center">
                     <?php if (isset($listePays[$i]['idP'], $listePays[$i]['nom'])) { ?>
+                        <br/>
                         <a href="./?action=detail&idP=<?= $listePays[$i]['idP'] ?>">
                             <?= htmlspecialchars($listePays[$i]['nom']) ?>
                         </a>

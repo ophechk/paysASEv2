@@ -60,9 +60,13 @@ nav {
     color: #ff6600;
 }
 
+a{
+    text-decoration: none;
+}
+
 /* Contenu principal */
 #page {
-    max-width: 1500px;
+    max-width: 900px;
     margin: 20px auto;
     padding: 20px;
     background: white;
@@ -70,10 +74,18 @@ nav {
     border-radius: 5px;
 }
 
+#accroche {
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    text-align: center;
+    height: 100%; /* Ajuster selon le besoin */
+}
+
 /* Uniformisation des images */
 img {
-    width: 800px; /* Taille fixe pour toutes les images */
-    height: 800px; /* Taille fixe pour uniformiser */
+    width: 500px; /* Taille fixe pour toutes les images */
+    height: 390px; /* Taille fixe pour uniformiser */
     object-fit: cover; /* Ajuste l'image pour remplir sans distorsion */
     display: block;
     margin: 0 auto;
