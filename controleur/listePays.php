@@ -9,15 +9,15 @@ include_once "$racine/modele/bd.pays.inc.php";
 
 // appel des fonctions permettant de recuperer les donnees utiles a l'affichage 
 $listePays = getPays();
-$lesPhotos = getPhotoByIdPh($idPh);
 
 // traitement si necessaire des donnees recuperees
 ;
 
 // appel du script de vue qui permet de gerer l'affichage des donnees
-$titre = "Liste des restaurants répertoriés";
+$titre = "Liste des pays répertoriés";
 include "$racine/vue/entete.html.php";
 include "$racine/vue/vueListeRestos.php";
 include "$racine/vue/pied.html.php";
+
 
 ?>

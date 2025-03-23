@@ -35,14 +35,14 @@ function getUtilisateurByEmail($email) {
     return $resultat;
 }
 
-function addUtilisateur($email, $password, $pseudo) {
+function addUtilisateur($email, $mot_de_passe, $pseudo) {
     try {
         $cnx = connexionPDO();
 
-        $passwordCrypt = crypt($password, "sel");
+        $mdpUCrypt = crypt($mot_de_passe, "sel");
         $req = $cnx->prepare("insert into utilisateur (email, mot_de_passe, pseudo) values(:email,:mot_de_passe,:pseudo)");
         $req->bindValue(':email', $email, PDO::PARAM_STR);
-        $req->bindValue(':mot_de_passe', $passwordCrypt, PDO::PARAM_STR);
+        $req->bindValue(':mot_de_passe', $mdpUCrypt, PDO::PARAM_STR);
         $req->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
         
         $resultat = $req->execute();
@@ -53,15 +53,15 @@ function addUtilisateur($email, $password, $pseudo) {
     return $resultat;
 }
 
-function updtPasswordUtilisateur($email, $password) {
+function updtMdpUtilisateur($email, $mot_de_passe) {
     $resultat = -1;
     try {
         $cnx = connexionPDO();
 
-        $passwordCrypt = crypt($password, "sel");
-        $req = $cnx->prepare("update utilisateur set mot_de_passe=:mot_de_passe where email=:email");
+        $mdpUCrypt = crypt($mot_de_passe, "sel");
+        $req = $cnx->prepare("update utilisateur set mot_de-passe=:mot_de_passe where email=:email");
         $req->bindValue(':email', $email, PDO::PARAM_STR);
-        $req->bindValue(':mot_de_passe', $passwordCrypt, PDO::PARAM_STR);
+        $req->bindValue(':mot_de_passe', $mdpUCrypt, PDO::PARAM_STR);
 
         $resultat = $req->execute();
     } catch (PDOException $e) {
@@ -95,7 +95,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     echo "getUtilisateurs() : \n";
     print_r(getUtilisateurs());
 
-    echo "getUtilisateurByEmail(\"mathieu.capliez@gmail.com\") : \n";
+    echo "getUtilisateurByMailU(\"mathieu.capliez@gmail.com\") : \n";
     print_r(getUtilisateurByEmail("mathieu.capliez@gmail.com"));
 
     echo "addUtilisateur(\"mathieu.capliez3@gmail.com\") : \n";

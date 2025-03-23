@@ -6,9 +6,9 @@ Mon pseudo : <?= $util["pseudo"] ?> <br />
 
 <hr>
 
-les pays favoris : <br />
-<?php for($i=0;$i<count($mesPaysFavoris);$i++){ ?>
-    <a href="./?action=detail&id=<?= $mesPaysFavoris[$i]["id"] ?>"><?= $mesPaysFavoris[$i]["nom"] ?></a><br />
+Les pays favoris : <br />
+<?php for($i=0;$i<count($mesPayosFavoris);$i++){ ?>
+    <a href="./?action=detail&idP=<?= $mesPaysFavoris[$i]["idP"] ?>"><?= $mesPaysFavoris[$i]["nom"] ?></a><br />
 <?php } ?>
 <hr>
 <a href="./?action=deconnexion">Se deconnecter</a>

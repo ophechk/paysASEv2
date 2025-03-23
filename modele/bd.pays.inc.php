@@ -1,9 +1,8 @@
 <?php
 
 include_once "bd.inc.php";
-include_once "bd.photo.inc.php";
 
-function getPaysById($idP) {
+function getPaysByIdP($idP) {
 
     try {
         $cnx = connexionPDO();
@@ -38,20 +37,23 @@ function getPays() {
     return $resultat;
 }
 
-function getPaysByCapitale($capitale) {
+
+function getPaysByMotsCles($tabMots) {
     $resultat = array();
+
+    $filtre = "";
+    for ($i = 0; $i < count($tabMots); $i++) {
+        $filtre .= " or  nom like '%:mot$i%' ";
+        $filtre .= " or  capital like '%:mot$i%' ";
+    }
 
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("select * from pays where capitale like :capitale");
-        $req->bindValue(':capitale', "%" . $capitale . "%", PDO::PARAM_STR);
-
+        $req = $cnx->prepare("select * from pays " . $filtre);
         $req->execute();
 
-        $ligne = $req->fetch(PDO::FETCH_ASSOC);
-        while ($ligne) {
+        while ($ligne = $req->fetch(PDO::FETCH_ASSOC)) {
             $resultat[] = $ligne;
-            $ligne = $req->fetch(PDO::FETCH_ASSOC);
         }
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage();
@@ -83,6 +85,24 @@ function getPaysByNom($nom) {
     return $resultat;
 }
 
+function getPaysByCapital($capital) {
+    $resultat = array();
+
+    try {
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("select * from pays where capital like :capital");
+        $req->bindValue(':capital', "%" . $capital . "%", PDO::PARAM_STR);
+        $req->execute();
+
+        while ($ligne = $req->fetch(PDO::FETCH_ASSOC)) {
+            $resultat[] = $ligne;
+        }
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage();
+        die();
+    }
+    return $resultat;
+}
 
 
 if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
@@ -92,11 +112,13 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     echo "getPays() : \n";
     print_r(getPays());
 
-    echo "getpaysByidPays(idP) : \n";
-    print_r(getPaysById(1));
+    echo "getPaysByIdP(idP) : \n";
+    print_r(getPaysByIdP(1));
 
-    echo "getPaysByNom(nom) : \n";
-    print_r(getPaysByNom("charcut"));
+    echo "getRestosByNomR(nomR) : \n";
+    print_r(getPaysByNom("Cambodge"));
 
+    echo "getPaysByCapital(capital) : \n";
+    print_r(getPaysByCapital("Phnom Penh"));
 }
 ?>

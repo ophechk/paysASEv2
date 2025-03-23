@@ -2,7 +2,7 @@
 
 include_once "bd.utilisateur.inc.php";
 
-function login($email, $password) {
+function login($email, $mot_de_passe) {
     if (!isset($_SESSION)) {
         session_start();
     }
@@ -10,7 +10,7 @@ function login($email, $password) {
     $util = getUtilisateurByEmail($email);
     $mdpBD = $util["mot_de_passe"];
 
-    if (trim($mdpBD) == trim(crypt($password, $mdpBD))) {
+    if (trim($mdpBD) == trim(crypt($mot_de_passe, $mdpBD))) {
         // le mot de passe est celui de l'utilisateur dans la base de donnees
         $_SESSION["email"] = $email;
         $_SESSION["mot_de_passe"] = $mdpBD;
@@ -58,7 +58,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 
 
     // test de connexion
-    login("mathieu.capliez@gmail.com", password: "Passe1?");
+    login("mathieu.capliez@gmail.com", "Passe1?");
     if (isLoggedOn()) {
         echo "logged";
     } else {

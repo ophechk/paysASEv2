@@ -4,8 +4,11 @@ if ( $_SERVER["SCRIPT_FILENAME"] == __FILE__ ){
 }
 include_once "$racine/modele/authentification.inc.php";
 
+// creation du menu burger
 $menuNav = array();
+$menuNav[] = Array("url"=>".?action=inscription", "label"=>"Inscription");
 $menuNav[] = Array("url"=>"./?action=recherche&critere=nom","label"=>"Recherche par nom");
+$menunav[] = Array("url"=>"./?action=recherche&critere=capital","label"=>"Recherche par capitale");
 
 // recuperation des donnees GET, POST, et SESSION
 if (!isset($_POST["email"]) || !isset($_POST["mot_de_passe"])){
@@ -18,9 +21,9 @@ if (!isset($_POST["email"]) || !isset($_POST["mot_de_passe"])){
 else
 {
     $email=$_POST["email"];
-    $password=$_POST["mot_de_passe"];
+    $mot_de_passe=$_POST["mot_de_passe"];
     
-    login($email,$password);
+    login($email,$mot_de_passe);
 
     if (isLoggedOn()){ // si l'utilisateur est connecté on redirige vers le controleur monProfil
         include "$racine/controleur/monProfil.php";

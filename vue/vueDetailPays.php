@@ -1,33 +1,43 @@
 
-<h1><?= $unPays['nom']; ?></h1>
+<h1><?= $unPays['nom']; ?>
 
-<section>
-    Capitale <br />
-    <ul id="capital">		
-        <?php for ($j = 0; $j < count($capital); $j++) { ?>
-            <li class="tag"><span class="tag">#</span><?= $capital[$j]["capital"] ?></li>
-        <?php } ?>
-    </ul>
+    <?php if ($favoris != false) { ?>
+        <a href="./?action=favoris&idP=<?= $unPays['idP']; ?>" ><img class="aimer" src="images/aime.png"></a>
+    <?php } else { ?>
+        <a href="./?action=favoris&idP=<?= $unPays['idP']; ?>" ><img class="aimer" src="images/aimepas.png"></a>
+    <?php } ?>
 
-</section>
+</h1>
 
-<h2 id="info">
-    Informations
+<p id="principal">
+    <?php if (count($lesPhotos) > 0) { ?>
+        <img src="photos/<?= $lesPhotos[0]["cheminP"] ?>"/>
+    <?php } ?>
+    <br />
+</p>
+<h2 id="capital">
+    Capitale :
 </h2>
 <p>
     <?= $unPays['capital']; ?>
-    <?= $unPays['superficie']; ?><br />
-    <?= $unPays['population']; ?>
-    <?= $unPays['langue_officielle']; ?>
-
 </p>
 
 <h2 id="photos">
-    Photos
+    Photos :
 </h2>
 <ul id="galerie">
     <?php for ($i = 0; $i < count($lesPhotos); $i++) { ?>
-        <li> <img class="galerie" src="photos/<?= $lesPhotos[$i]["chemin"] ?>" alt="" /></li>
+        <li> <img class="galerie" src="photos/<?= $lesPhotos[$i]["chemin"] ?>"/></li>
     <?php } ?>
 
 </ul>
+
+<h2 id="population">
+    Population :
+</h2> 
+<?= $unPays['population']; ?>
+
+<h2 id="superficie">
+    Superficie :
+</h2> 
+<?= $unPays['superficie']; ?>

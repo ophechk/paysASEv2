@@ -1,26 +1,27 @@
+
 <h1>Liste des pays</h1>
 
 <?php
 for ($i = 0; $i < count($listePays); $i++) {
 
-    if (isset($listePays[$i]['idP'])) {
-        $lesPhotos = getPhotosByIdP($listePays[$i]['idP']);
-    } else {
-        $lesPhotos = [];
-    }
-
-    $lesPhotos = getPhotosByIdP($listePays[$i]['idP']);
+    $lesPhotos = getPhotosByIdPh($listePays[$i]['idP']);
     ?>
-    
 
-    <div class="photoCard">
-        <?php if (count($lesPhotos) > 0) { ?>
-            <img src="photos/<?= htmlspecialchars($lesPhotos[0]["cheminP"]) ?>"/>
-        <?php } else { ?>
-            <p>Aucune photo disponible</p>
-        <?php } ?>
+    <div class="card">
+        <div class="photoCard">
+            <?php if (count($lesPhotos) > 0) { ?>
+                <img src="photos/<?= $lesPhotos[0]["chemin"] ?>"/>
+            <?php } ?>
+
+
+        </div>
+        <div class="descrCard"><?php echo "<a href='./?action=detail&idP=" . $listePays[$i]['idP'] . "'>" . $listePays[$i]['nom'] . "</a>"; ?>
+            <br />
+        </div>
+
     </div>
-
     <?php
 }
 ?>
+
+

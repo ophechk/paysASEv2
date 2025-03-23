@@ -8,9 +8,7 @@ include_once "$racine/modele/bd.utilisateur.inc.php";
 // creation du menu burger
 $menuNav = array();
 $menuNav[] = Array("url"=>"./?action=recherche&critere=nom","label"=>"Recherche par nom");
-
-
-
+$menunav[] = Array("url"=>"./?action=recherche&critere=capital","label"=>"Recherche par capitale");
 
 $inscrit = false;
 $msg="";
@@ -19,11 +17,11 @@ if (isset($_POST["email"]) && isset($_POST["mot_de_passe"]) && isset($_POST["pse
 
     if ($_POST["email"] != "" && $_POST["mot_de_passe"] != "" && $_POST["pseudo"] != "") {
         $email = $_POST["email"];
-        $password = $_POST["mot_de_passe"];
+        $mot_de_passe = $_POST["mot_de_passe"];
         $pseudo = $_POST["pseudo"];
 
         // enregistrement des donnees
-        $ret = addUtilisateur($email, $password, $pseudo);
+        $ret = addUtilisateur($email, $mot_de_passe, $pseudo);
         if ($ret) {
             $inscrit = true;
         } else {
@@ -43,7 +41,7 @@ if ($inscrit) {
     include "$racine/vue/pied.html.php";
 } else {
     // appel du script de vue qui permet de gerer l'affichage des donnees
-    $titre = "Inscription pb";
+    $titre = "Inscription";
     include "$racine/vue/entete.html.php";
     include "$racine/vue/vueInscription.php";
     include "$racine/vue/pied.html.php";

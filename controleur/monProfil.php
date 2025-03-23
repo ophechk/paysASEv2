@@ -18,6 +18,10 @@ $menuNav[] = Array("url"=>"./?action=updProfil","label"=>"Modifier mon profil");
 if (isLoggedOn()){
     $email = getEmailLoggedOn();
     $util = getUtilisateurByEmail($email);
+    
+    
+    // traitement si necessaire des donnees recuperees
+
 
     // appel du script de vue qui permet de gerer l'affichage des donnees
     $titre = "Mon profil";

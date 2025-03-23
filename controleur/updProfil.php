@@ -33,14 +33,17 @@ if (isLoggedOn()) {
     if (isset($_POST["mot_de_passe"]) && isset($_POST["mot_de_passe2"])) {
         if ($_POST["mot_de_passe"] != "") {
             if (($_POST["mot_de_passe"] == $_POST["mot_de_passe2"])) {
-                updtPasswordUtilisateur($email, $_POST["mot_de_passe"]);
+                updtMdpUtilisateur($email, $_POST["mot_de_passe"]);
             } else {
-                $messageMdp = "erreur de saisie du mot de passe";
+                $messageMdp = "Erreur de saisie du mot de passe";
             }
         }
     }
 
+    
+    // appel des fonctions permettant de recuperer les donnees utiles a l'affichage 
 
+    
     // appel du script de vue qui permet de gerer l'affichage des donnees
     $titre = "Mon profil";
     include "$racine/vue/entete.html.php";
