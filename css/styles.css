@@ -91,3 +91,10 @@ img {
     margin: 0 auto;
     border-radius: 5px;
 }
+
+.favoris{
+    vertical-align : middle;	
+    width: 15px;
+    height: 15px;
+}
+

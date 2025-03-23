@@ -6,6 +6,7 @@
     <title><?php echo $titre ?></title>
     <style type="text/css">
         @import url("css/styles.css");
+        @import url("css/form.css");
     </style>
 </head>
 

@@ -8,10 +8,3 @@
 </form>
 <br />
 Pas encore de compte ? <a href="./?action=inscription">Créer un compte</a>
-
-<hr>
-Utilisateur de test :
-<br />
-login : po@gmail.com
-<br />
-mot de passe : popo
