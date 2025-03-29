@@ -6,6 +6,7 @@ include_once "$racine/modele/authentification.inc.php";
 
 // creation du menu burger
 $menuNav = array();
+$menuNav[] = array("url" => ".?action=inscription", "label" => "Connexion");
 $menuNav[] = array("url" => "./?action=inscription", "label" => "Inscription");
 
 // recuperation des donnees GET, POST, et SESSION

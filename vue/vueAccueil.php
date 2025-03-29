@@ -5,7 +5,7 @@ require_once __DIR__ . '/../modele/bd.photo.inc.php';
 <br/>
 
 <div id="accroche">Découvrez les pays d'Asie du Sud-Est</div>
-<h1>Quelques pays...</h1>
+<h1>Quelques pays d'asie du Sud Est...</h1>
 
 <?php
 if (!empty($listePays)) {
