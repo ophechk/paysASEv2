@@ -56,42 +56,32 @@ function addUtilisateur($email, $mot_de_passe, $pseudo)
     return $resultat;
 }
 
-function updtMdpUtilisateur($email, $mot_de_passe)
-{
-    $resultat = -1;
+function updtMdpUtilisateur($email, $new_password) {
     try {
         $cnx = connexionPDO();
-
-        $mdpUCrypt = crypt($mot_de_passe, "sel");
-        $req = $cnx->prepare("update utilisateur set mot_de-passe=:mot_de_passe where email=:email");
+        $req = $cnx->prepare("UPDATE utilisateur SET mot_de_passe = :mot_de_passe WHERE email = :email");
+        $req->bindValue(':mot_de_passe', password_hash($new_password, PASSWORD_DEFAULT), PDO::PARAM_STR);
         $req->bindValue(':email', $email, PDO::PARAM_STR);
-        $req->bindValue(':mot_de_passe', $mdpUCrypt, PDO::PARAM_STR);
-
-        $resultat = $req->execute();
+        return $req->execute();
     } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage();
-        die();
+        error_log("Erreur PDO dans updtMdpUtilisateur: " . $e->getMessage());
+        return false;
     }
-    return $resultat;
 }
 
-function updtPseudoUtilisateur($email, $pseudo)
-{
-    $resultat = -1;
+function updtPseudoUtilisateur($email, $pseudo) {
     try {
         $cnx = connexionPDO();
-
-        $req = $cnx->prepare("update utilisateur set pseudo=:pseudo where email=:email");
-        $req->bindValue(':email', $email, PDO::PARAM_STR);
+        $req = $cnx->prepare("UPDATE utilisateur SET pseudo = :pseudo WHERE email = :email");
         $req->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
-
-        $resultat = $req->execute();
+        $req->bindValue(':email', $email, PDO::PARAM_STR);
+        return $req->execute();
     } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage();
-        die();
+        error_log("Erreur PDO dans updtPseudoUtilisateur: " . $e->getMessage());
+        return false;
     }
-    return $resultat;
 }
+
 
 if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     // prog principal de test

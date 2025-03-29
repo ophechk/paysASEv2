@@ -30,6 +30,8 @@ if (!is_array($lesPhotos)) {
     $lesPhotos = []; // Si la requête échoue, on met un tableau vide
 }
 
+$idU = getidULoggedOn();
+$favoris = getFavorisById($idU, $idP);
 $email = getEmailLoggedOn();
 
 // Affichage des vues
@@ -39,3 +41,4 @@ include "$racine/vue/vueDetailPays.php";
 include "$racine/vue/pied.html.php";
 
 ?>
+

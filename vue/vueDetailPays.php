@@ -4,22 +4,19 @@ require_once __DIR__ . '/../modele/bd.photo.inc.php';
 // Récupération de l'ID de la photo principale du pays
 $photo_id = isset($unPays['photo_idPh']) ? intval($unPays['photo_idPh']) : null;
 $photo = (!empty($photo_id)) ? getPhotoByIdPh($photo_id) : null;
+
 ?>
 
-<h1>
-    <?= htmlspecialchars($unPays['nom']) ?>
+<h1><?= $unPays['nom']; ?>
 
-    <!-- <?php if ($favoris != false) { ?>
-        <a href="./?action=favoris&idP=<?= $unPays['idP']; ?>">
-            <img class="aimer" src="images/aime.png">
-        </a>
+    <?php if ($favoris != false) { ?>
+        <a href="./?action=favoris&idP=<?= $unPays['idP']; ?>" ><img class="favoris" src="images/Favoris1.png"></a>
     <?php } else { ?>
-        <a href="./?action=favoris&idP=<?= $unPays['idP']; ?>">
-            <img class="aimer" src="images/aimepas.png">
-        </a>
-    <?php } ?> -->
+        <a href="./?action=favoris&idP=<?= $unPays['idP']; ?>" ><img class="favoris" src="images/PasFavoris.png"></a>
+    <?php } ?>
 
 </h1>
+
 
 <!-- Affichage de la photo principale du pays -->
 <div id="photo-pays">
