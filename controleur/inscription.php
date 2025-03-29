@@ -10,6 +10,8 @@ $menuNav = array();
 
 $inscrit = false;
 $msg = "";
+
+
 // recuperation des donnees GET, POST, et SESSION
 if (isset($_POST["email"]) && isset($_POST["mot_de_passe"]) && isset($_POST["pseudo"])) {
 

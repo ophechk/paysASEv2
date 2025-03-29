@@ -13,7 +13,7 @@ include_once "$racine/modele/authentification.inc.php";
 $idP = isset($_GET["idP"]) ? intval($_GET["idP"]) : 0;
 $idPh = isset($_GET["idPh"]) ? intval($_GET["idPh"]) : null;
 
-// Vérification que l'ID est valide
+// Vérification que l'ID du pays est valide
 if ($idP <= 0) {
     die("Erreur : ID du pays non valide.");
 }
@@ -30,9 +30,9 @@ if (!is_array($lesPhotos)) {
     $lesPhotos = []; // Si la requête échoue, on met un tableau vide
 }
 
-$idU = getidULoggedOn();
-$favoris = getFavorisById($idU, $idP);
-$email = getEmailLoggedOn();
+$idU = getidULoggedOn(); // récupérer l'id de la personne connecté
+$favoris = getFavorisById($idU, $idP); // récupérer le pays favoris de l'utilisateur connecté
+$email = getEmailLoggedOn(); // récupérer l'email de la personne connecté
 
 // Affichage des vues
 $titre = "Détail d'un pays";
