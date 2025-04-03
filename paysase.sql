@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 18, 2025 at 09:33 PM
+-- Generation Time: Apr 03, 2025 at 07:53 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -29,21 +29,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `favoris` (
   `utilisateur_idU` int NOT NULL,
-  `pays_idP` int NOT NULL,
-  `date_ajout` datetime DEFAULT CURRENT_TIMESTAMP
+  `pays_idP` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `favoris`
 --
 
-INSERT INTO `favoris` (`utilisateur_idU`, `pays_idP`, `date_ajout`) VALUES
-(2, 1, '2025-03-18 10:07:06'),
-(2, 3, '2025-03-18 10:07:06'),
-(3, 2, '2025-03-18 10:07:06'),
-(3, 4, '2025-03-18 10:07:06'),
-(4, 5, '2025-03-18 10:07:06'),
-(4, 6, '2025-03-18 10:07:06');
+INSERT INTO `favoris` (`utilisateur_idU`, `pays_idP`) VALUES
+(8, 1),
+(6, 5),
+(8, 5),
+(9, 5);
 
 -- --------------------------------------------------------
 
@@ -121,17 +118,17 @@ CREATE TABLE `photo` (
 
 INSERT INTO `photo` (`idPh`, `chemin`) VALUES
 (1, 'indonesie.jpeg'),
-(2, '/images/malaisie.jpg'),
-(3, '/images/thailande.jpg'),
-(4, '/images/vietnam.jpeg'),
-(5, '/images/cambodge.jpg'),
-(6, '/images/laos.jpg'),
-(7, '/images/myanmar.jpg'),
-(8, '/images/philippines.jpg'),
-(9, '/images/singapour.jpg'),
-(10, '/images/timor_oriental.jpg'),
-(11, '/images/indonesie.jpeg'),
-(12, '/images/malaisie.jpg');
+(2, 'malaisie.jpg'),
+(3, 'thailande.jpg'),
+(4, 'vietnam.jpeg'),
+(5, 'cambodge.jpg'),
+(6, 'laos.jpg'),
+(7, 'myanmar.jpg'),
+(8, 'philippines.jpg'),
+(9, 'singapour.jpg'),
+(10, 'timor_oriental.jpg'),
+(11, 'indonesie.jpeg'),
+(12, 'malaisie.jpg');
 
 -- --------------------------------------------------------
 
@@ -141,10 +138,9 @@ INSERT INTO `photo` (`idPh`, `chemin`) VALUES
 
 CREATE TABLE `utilisateur` (
   `idU` int NOT NULL,
-  `role` varchar(50) NOT NULL,
   `pseudo` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `mot_de_passe` varchar(255) NOT NULL,
+  `mot_de_passe` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `date_inscription` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -152,11 +148,11 @@ CREATE TABLE `utilisateur` (
 -- Dumping data for table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`idU`, `role`, `pseudo`, `email`, `mot_de_passe`, `date_inscription`) VALUES
-(1, 'admin', 'admin01', 'admin01@example.com', 'adminpassword', '2025-03-18 10:05:38'),
-(2, 'utilisateur', 'john_doe', 'john.doe@example.com', 'johnpassword', '2025-03-18 10:05:38'),
-(3, 'utilisateur', 'jane_doe', 'jane.doe@example.com', 'janepassword', '2025-03-18 10:05:38'),
-(4, 'moderateur', 'mod_01', 'moderator01@example.com', 'modpassword', '2025-03-18 10:05:38');
+INSERT INTO `utilisateur` (`idU`, `pseudo`, `email`, `mot_de_passe`, `date_inscription`) VALUES
+(6, 'Po', 'po@gmail.com', 'seyMcJUIMz/pU', '2025-03-23 15:26:59'),
+(7, 'admin1', 'admin@sio.com', 'seCBdk.BxFGa6', '2025-03-23 19:06:08'),
+(8, 'test', 'test@gmail.com', '$2y$10$otOfp/BK87Vbw1iSmOGtiufzpOFaqvtI8VDXJQ3VGEf.eDeWka84S', '2025-03-24 10:16:59'),
+(9, 'willy.chk', 'wchheak@gmail.com', 'seiOAMBdr6q6g', '2025-03-29 18:46:48');
 
 --
 -- Indexes for dumped tables
@@ -224,7 +220,7 @@ ALTER TABLE `photo`
 -- AUTO_INCREMENT for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `idU` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idU` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
